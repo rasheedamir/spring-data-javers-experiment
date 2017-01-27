@@ -12,22 +12,7 @@ import java.time.OffsetDateTime;
 public class Account
 {
     @Id
-    private String id;
-    private String holderName;
-    private OffsetDateTime creationDate;
-
-    public String getId()
-    {
-        return id;
-    }
-
-    public String getHolderName()
-    {
-        return holderName;
-    }
-
-    public OffsetDateTime getCreationDate()
-    {
-        return creationDate;
-    }
+    public String id;
+    public String holderName;
+    public OffsetDateTime openingDateTime;
 }
