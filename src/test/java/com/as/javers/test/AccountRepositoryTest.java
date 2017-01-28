@@ -44,5 +44,12 @@ public class AccountRepositoryTest
         foundOne = accountRepository.save(foundOne);
         changes = accountAuditService.getAccountChanges(foundOne.id, Optional.empty());
         assertEquals(1, changes.size());
+
+        // modify again
+        foundOne = accountRepository.findOne(account.id);
+        foundOne.holderName = "Rasheed Amir Waraich";
+        foundOne = accountRepository.save(foundOne);
+        changes = accountAuditService.getAccountChanges(foundOne.id, Optional.empty());
+        assertEquals(2, changes.size());
     }
 }
