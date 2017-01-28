@@ -3,3 +3,4 @@ spring:
         mongodb:
             host: ${MONGODB_HOST}
             port: 27017
+
