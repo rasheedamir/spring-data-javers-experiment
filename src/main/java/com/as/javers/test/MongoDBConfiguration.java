@@ -20,6 +20,8 @@ public class MongoDBConfiguration
         List<Converter<?, ?>> converters = new ArrayList<>();
         converters.add(new OffsetDateTimeToStringConverter());
         converters.add(new StringToOffsetDateTimeConverter());
+        converters.add(new StringToDateTimeConverter());
+        converters.add(new DateTimeToStringConverter());
         return new CustomConversions(converters);
     }
 }

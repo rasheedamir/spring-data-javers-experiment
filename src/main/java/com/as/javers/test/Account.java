@@ -1,5 +1,6 @@
 package com.as.javers.test;
 
+import org.joda.time.DateTime;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -14,5 +15,6 @@ public class Account
     @Id
     public String id;
     public String holderName;
-    public OffsetDateTime openingDateTime;
+    public OffsetDateTime java8OpeningDateTime;
+    public DateTime jodaOpeningDateTime;
 }

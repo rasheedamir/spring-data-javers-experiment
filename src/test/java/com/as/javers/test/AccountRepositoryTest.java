@@ -1,6 +1,7 @@
 package com.as.javers.test;
 
 import org.javers.core.diff.Change;
+import org.joda.time.DateTime;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,8 @@ public class AccountRepositoryTest
     {
         Account account = new Account();
         account.holderName = "Rasheed";
-        account.openingDateTime = OffsetDateTime.now();
+        account.java8OpeningDateTime = OffsetDateTime.now();
+        account.jodaOpeningDateTime = DateTime.now();
 
         account = accountRepository.save(account);
         List<Change> changes = accountAuditService.getAccountChanges(account.id, Optional.empty());
@@ -41,6 +43,7 @@ public class AccountRepositoryTest
 
         // modify now
         foundOne.holderName = "Rasheed Amir";
+        account.jodaOpeningDateTime = DateTime.now().plus(10000);
         foundOne = accountRepository.save(foundOne);
         changes = accountAuditService.getAccountChanges(foundOne.id, Optional.empty());
         assertEquals(1, changes.size());
@@ -48,6 +51,7 @@ public class AccountRepositoryTest
         // modify again
         foundOne = accountRepository.findOne(account.id);
         foundOne.holderName = "Rasheed Amir Waraich";
+        account.java8OpeningDateTime = OffsetDateTime.now().plusHours(20);
         foundOne = accountRepository.save(foundOne);
         changes = accountAuditService.getAccountChanges(foundOne.id, Optional.empty());
         assertEquals(2, changes.size());
